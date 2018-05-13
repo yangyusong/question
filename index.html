@@ -6,7 +6,7 @@
 <!--<![endif]-->
 <head>
     <meta charset="utf-8">
-    <title>Home</title>
+    <title>首页</title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -17,10 +17,8 @@
     <link rel="shortcut icon" href="images/favicon.ico">
 
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="css/animations.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
 </head>
 
 <body class="no-trans">
@@ -61,23 +59,9 @@
                         <!-- navbar start -->
                         <nav class="navbar navbar-default" role="navigation">
                             <div class="container-fluid">
-
-                                <!-- Toggle get grouped for better mobile display -->
-                                <div class="navbar-header">
-                                    <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                            data-target="#navbar-collapse-1">
-                                        <span class="sr-only">Toggle navigation</span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                    </button>
-                                </div>
-
-                                <!-- Collect the nav links, forms, and other content for toggling -->
                                 <div class="collapse navbar-collapse scrollspy smooth-scroll" id="navbar-collapse-1">
                                     <ul class="nav navbar-nav navbar-right">
                                         <li class="active"><a href="#banner">首页</a></li>
-                                        <li><a href="#register">注册帐号</a></li>
                                         <li><a href="#main">问答区</a></li>
                                         <li><a href="#hot">热门</a></li>
                                         <li><a href="#footer">关于我们</a></li>
@@ -107,10 +91,12 @@
         <div class="container">
             <div class="row">
                 <div class="caption-data" style="margin-top: 0px; opacity: 1;" data-animation-effect="fadeIn">
-                    <h1>问答社交</h1>
-                    <h3 class="padding-top30">基于新一代公链星云链的知识问答社交网站</h3>
+                    <h1>让答案更有价值</h1>
+                    <h3 class="padding-top30">基于新一代公链星云链的知识问答社交网站、社区</h3>
+                    <h3  class="padding-top30" id="noExtension">提示: 请安装
+                        <a target="_blank" href="https://github.com/ChengOrangeJu/WebExtensionWallet">WebExtensionWallet</a> 再使用</h3>
                     <div class="padding-top60 contact-form">
-                        <a href="#services">
+                        <a href="#main1">
                             <button class="btn cta-button">立马开启</button>
                         </a>
                     </div>
@@ -120,68 +106,69 @@
     </div>
 </div>
 <!-- banner end -->
-<section class="hero-caption secPadding">
-
+<section class="hero-caption secPadding" id="main1">
     <div class="container">
-
         <div class="row " style="margin-top: 0px;">
             <div class="col-sm-12">
                 <h2>以题会友，以答会友，来一场问答的'华山论剑'</h2>
                 <p>在问答区展示你的个人魅力，说不定会有美丽的邂逅</p>
             </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- section start -->
-<section class="section clearfix no-view secPadding" data-animation-effect="fadeIn">
-    <div class="container">
-        <div class="row" id="main">
-            这是问答区
         </div>
     </div>
 </section>
-<!-- section end -->
-
 <!-- section start -->
-<div class="default-bg colord secPadding">
+<div id="app">
+<section class="section secPadding">
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1 id="register" class="title text-center">注册帐号</span></h1>
-                <div class="space"></div>
-                <div class="row">
-                    <div class="col-md-12">
-
+        <h1 class="text-center title" id="main">问答区</h1>
+        <div class="item-wrap" >
+            <div class="item" v-for="q in list">
+                <div class="ques">
+                    <img src="images/head-default.jpg" alt="">
+                    <div class="content">
+                        <span v-html="q.title"></span>
+                        <span class="look" @click="look(q.key)">查看回答</span>
+                    </div>
+                </div>
+                <div class="answer" :class="'answer'+q.key">
+                    <div class="item" v-for="a in q.answer">
+                        <div class="c">
+                            <img src="images/zan.png" @click="zan">{{a.content}}
+                        </div>
+                        <div class="date" v-html="a.date">
+                        </div>
+                    </div>
+                    <div style="margin: 15px 0;">
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="footer-content">
+                                    <div class="form-group has-feedback">
+                                        <textarea name="Message" rows="3" cols="20" :id="'answerInp'+q.key"
+                                                  class="form-control input-message wow fadeInUp" placeholder="请输入您的回答"
+                                                  required></textarea>
+                                    </div>
+                                    <input type="submit" value="回答" class="btn btn-sm" @click="push(q.key)">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<!-- section start -->
-<section class="section secPadding">
-    <div class="container">
-        <h1 class="text-center title" id="portfolio">Portfolio</h1>
-        <div class="separator"></div>
-        <p class="lead text-center">Lorem ipsum dolor sit amet laudantium molestias simi Quisquam incidunt.</p>
-        <br>
-        <div class="row no-view" data-animation-effect="fadeIn">
-            <div class="col-md-12">
-
-                <!-- isotope filters start -->
-                <div class="filters text-center">
-                    <ul class="nav nav-pills">
-                        <li class="active"><a href="#" data-filter="*">All</a></li>
-                        <li><a href="#" data-filter=".web-design">Web design</a></li>
-                        <li><a href="#" data-filter=".app-development">App development</a></li>
-                        <li><a href="#" data-filter=".mobile-apps">Mobile Apps</a></li>
-                    </ul>
+        <!--翻页按钮-->
+        <div class="filters" style="margin-top: 85px">
+            <h3 style="font-weight: bold">我要提问</h3>
+        </div>
+        <!--回答提问-->
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="footer-content">
+                    <div class="form-group has-feedback">
+                        <input type="text" id="questionInp" class="form-control wow fadeInUp" placeholder="请输入你的问题"/>
+                    </div>
+                    <input type="submit" value="提交" class="btn btn-sm" onclick="push()">
                 </div>
-
             </div>
         </div>
     </div>
@@ -201,62 +188,25 @@
                 <div class="carousel slide" data-ride="carousel" id="quote-carousel">
                     <!-- Bottom Carousel Indicators -->
                     <ol class="carousel-indicators">
-                        <li data-target="#quote-carousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#quote-carousel" data-slide-to="1"></li>
-                        <li data-target="#quote-carousel" data-slide-to="2"></li>
+                        <template  v-for="(q,index) in list" v-if="index<3">
+                            <li data-target="#quote-carousel" :data-slide-to="index":class="{ active: index==0 }"></li>&nbsp;
+                        </template>
                     </ol>
 
                     <!-- Carousel Slides / Quotes -->
                     <div class="carousel-inner">
 
                         <!-- Quote 1 -->
-                        <div class="item active">
+                        <div class="item" v-for="(q,index) in list" v-if="index<3" :class="{ active: index==0 }">
                             <blockquote>
                                 <div class="row">
                                     <div class="col-sm-3 text-center">
-                                        <img class="img-circle"
-                                             src="https://s3.amazonaws.com/uifaces/faces/twitter/kolage/128.jpg"
+                                        <img class="img-circle" src="images/head-default.jpg"
                                              style="width: 100px;height:100px;">
                                     </div>
                                     <div class="col-sm-9">
-                                        <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur,
-                                            adipisci velit!</p>
-                                        <small>Someone famous</small>
-                                    </div>
-                                </div>
-                            </blockquote>
-                        </div>
-                        <!-- Quote 2 -->
-                        <div class="item">
-                            <blockquote>
-                                <div class="row">
-                                    <div class="col-sm-3 text-center">
-                                        <img class="img-circle"
-                                             src="https://s3.amazonaws.com/uifaces/faces/twitter/mijustin/128.jpg"
-                                             style="width: 100px;height:100px;">
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam auctor nec
-                                            lacus ut tempor. Mauris.</p>
-                                        <small>Someone famous</small>
-                                    </div>
-                                </div>
-                            </blockquote>
-                        </div>
-                        <!-- Quote 3 -->
-                        <div class="item">
-                            <blockquote>
-                                <div class="row">
-                                    <div class="col-sm-3 text-center">
-                                        <img class="img-circle"
-                                             src="https://s3.amazonaws.com/uifaces/faces/twitter/keizgoesboom/128.jpg"
-                                             style="width: 100px;height:100px;">
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rutrum elit in
-                                            arcu blandit, eget pretium nisl accumsan. Sed ultricies commodo tortor, eu
-                                            pretium mauris.</p>
-                                        <small>Someone famous</small>
+                                        <p v-html="q.title"></p>
+                                        <small>匿名</small>
                                     </div>
                                 </div>
                             </blockquote>
@@ -272,57 +222,29 @@
 <footer id="footer">
 
     <!-- .footer start -->
-    <!--<div class="footer section">
+    <div class="footer section">
         <div class="container">
-            <h1 class="title text-center" id="contact">Contact Us</h1>
-            <div class="space"></div>
             <div class="row">
-
-                <div class="col-sm-6">
-                    <div class="footer-content">
-                        <form method="POST" role="form" id="footer-form" action="contactengine.php"
-                              onSubmit="alert('Thank you for your feedback!');">
-                            <div class="form-group has-feedback">
-                                <label class="sr-only" for="name2">Name</label>
-                                <input type="text" name="Name" id="Name" class="form-control wow fadeInUp"
-                                       placeholder="Enter Name" required/>
-                                <i class="fa fa-user form-control-feedback"></i>
-                            </div>
-                            <div class="form-group has-feedback">
-                                <label class="sr-only" for="email2">Email address</label>
-                                <input type="text" name="Name" id="Name" class="form-control wow fadeInUp"
-                                       placeholder="Enter Email" required/>
-                                <i class="fa fa-envelope form-control-feedback"></i>
-                            </div>
-                            <div class="form-group has-feedback">
-                                <label class="sr-only" for="message2">Message</label>
-                                <textarea name="Message" rows="8" cols="20" id="Message"
-                                          class="form-control input-message wow fadeInUp" placeholder="Message"
-                                          required></textarea>
-                                <i class="fa fa-pencil form-control-feedback"></i>
-                            </div>
-                            <input type="submit" value="Send" class="btn btn-default">
-                        </form>
-
-                    </div>
-                </div>
-
-                <div class="col-sm-6">
-
-                </div>
+                下版本更新：<br>
+                1. 问题分类&nbsp;&nbsp;
+                2. 提问者可设置奖励，奖励回答者&nbsp;&nbsp;
+                3. 用户可设置昵称&nbsp;&nbsp;
+                4. 此处省略一万字
             </div>
         </div>
-    </div>-->
+    </div>
     <!-- .footer end -->
 
     <!-- .subfooter start -->
     <div class="subfooter">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
-                    <p class="text-center">Copyright &copy; 2018.Company name All rights reserved.More Templates <a
-                            href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a
-                            href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+                <div class="col-md-12" style="text-align: center">
+                    <p>Copyright © 2018.基于
+                        <a href="https://nebulas.io/" target="_blank">NAS</a>的问答社交网站
+                        <a href="https://incentive.nebulas.io/cn/signup.html?invite=32KAi" target="_blank">点我发布DAPP获取100NAS</a>
+                    </p>
+                    <p>联系方式：779205344@qq.com</p>
                 </div>
             </div>
         </div>
@@ -331,7 +253,7 @@
 
 </footer>
 <!-- footer end -->
-
+</div>
 <!-- JavaScript -->
 <script type="text/javascript" src="plugins/jquery.min.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
@@ -339,9 +261,191 @@
 <script type="text/javascript" src="plugins/isotope/isotope.pkgd.min.js"></script>
 <script type="text/javascript" src="plugins/jquery.backstretch.min.js"></script>
 <script type="text/javascript" src="plugins/jquery.appear.js"></script>
-
 <!-- Custom Scripts -->
 <script type="text/javascript" src="js/custom.js"></script>
+<script src="js/nebPay.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="js/layer/layer.js" type="text/javascript" charset="utf-8"></script>
 
+<script>
+    var NebPay = require("nebpay"); //https://github.com/nebulasio/nebPay
+    var nebPay = new NebPay();
+
+    $(function(){
+        //检查扩展是否已安装
+        //如果安装了扩展，var“webExtensionWallet”将被注入到web页面中1
+        if(typeof(webExtensionWallet) === "undefined") {
+            //alert ("扩展钱包未安装，请先安装.")
+            $("#noExtension").show();
+        }
+
+        $('#add').on('click',function(){
+            $('#inp').slideToggle();
+        });
+    })
+
+    var dappAddress = "n1z7busxfs4XgMj952var9DbeqdijAQUtof";
+    var bLen = 0;
+    setInterval(function() {
+        getQuestion(0);
+    }, 15000);
+    getQuestion(0);
+    // 初始化
+    function getQuestion(page) {
+        var to = dappAddress;
+        var value = "0";
+        var callFunction = "forEach";
+        var callArgs = "[100]";
+        nebPay.simulateCall(to, value, callFunction, callArgs, {
+            listener: cbSearch
+        });
+    }
+    //return of search,
+    function cbSearch(resp) {
+        if(!resp.result) return;
+        var result = eval(JSON.parse(resp.result));
+
+        var qList=[];
+        for(var i=0;i<result.length;i++){
+            var qObj={};
+            var v=result[i].value.split('|-');
+            var d=result[i].date.split('|-');
+            qObj.key=result[i].key;
+            qObj.title=v[0];
+            qObj.date=d[0];
+            v.shift();
+            d.shift();
+            qObj.answer=[];
+            for(var m=0;m<v.length;m++){
+                var temp={};
+                temp.content=v[m];
+                temp.date=d[m];
+                qObj.answer.push(temp);
+            }
+            qList.push(qObj);
+        }
+        if(result !== 'null') {
+            Vue.set(app, 'list', qList)
+        }
+    }
+    // 提交问题
+    function push(key) {
+        var to = dappAddress;
+        var value = "0";
+        var callFunction = "save"
+        var callArgs = [];
+        callArgs.push((key||(bLen+1)).toString());
+        if(key){
+            if($("#answerInp"+key).val() == '') {
+                layer.alert('回答不能为空哟！');
+                return;
+            } else if($("#answerInp"+key).val() > 200) {
+                layer.alert('回答太长了！');
+                return;
+            }
+            callArgs.push($("#answerInp"+key).val());
+        }else{
+            if($("#questionInp").val() == '') {
+                layer.alert('问题不能为空哟！');
+                return;
+            } else if($("#questionInp").val() > 200) {
+                layer.alert('问题太长了！');
+                return;
+            }
+            callArgs.push($("#questionInp").val());
+        }
+        callArgs.push(new Date().format("yyyy-MM-dd hh:mm:ss"))
+        nebPay.call(to, value, callFunction, JSON.stringify(callArgs), { //使用nebpay的call接口去调用合约,
+            listener: cbPush
+        });
+    }
+    function cbPush(resp) {
+        console.log("response of push: " + resp);
+        $("#questionInp").val('')
+    }
+
+
+    function getLen() {
+        var to = dappAddress;
+        var value = "0";
+        var callFunction = "len";
+        nebPay.simulateCall(to, value, callFunction, '', {
+            listener: cbLen
+        });
+    }
+    function cbLen(resp) {
+        bLen = parseInt(resp.result || 0);
+    }
+    getLen();
+    var app = new Vue({
+        el: '#app',
+        data: {
+            list: []
+        },
+        methods: {
+            formatDateTime: function(theDate) {
+                if(!theDate || theDate == null || theDate.split(':').length != 2) {
+                    return ' ';
+                }
+                theDate = theDate.split(':')[1];
+                if(theDate == '') {
+                    return '';
+                }
+                var date = new Date();
+                date.setTime(theDate);
+                var y = date.getFullYear();
+                var m = date.getMonth() + 1;
+                m = m < 10 ? ('0' + m) : m;
+                var d = date.getDate();
+                d = d < 10 ? ('0' + d) : d;
+                var h = date.getHours();
+                h = h < 10 ? ('0' + h) : h;
+                var minute = date.getMinutes();
+                var second = date.getSeconds();
+                minute = minute < 10 ? ('0' + minute) : minute;
+                second = second < 10 ? ('0' + second) : second;
+                return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second;
+            },
+            getContent:function(text){
+                if(text){
+                    return text.split(':')[0];
+                }else{
+                    return ' ';
+                }
+
+            },
+            zan:function(){
+                layer.msg('点赞功能正在开发中');
+            },
+            push:function(key){
+                push(key);
+            },
+            look:function(key){
+                $('.answer').not('.answer'+key).slideUp();
+                $('.answer'+key).slideToggle();
+            }
+        }
+    })
+
+    Date.prototype.format = function (format) {
+        var args = {
+            "M+": this.getMonth() + 1,
+            "d+": this.getDate(),
+            "h+": this.getHours(),
+            "m+": this.getMinutes(),
+            "s+": this.getSeconds(),
+            "q+": Math.floor((this.getMonth() + 3) / 3),  //quarter
+            "S": this.getMilliseconds()
+        };
+        if (/(y+)/.test(format))
+            format = format.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var i in args) {
+            var n = args[i];
+            if (new RegExp("(" + i + ")").test(format))
+                format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? n : ("00" + n).substr(("" + n).length));
+        }
+        return format;
+    };
+</script>
 </body>
 </html>
