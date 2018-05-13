@@ -1137,6 +1137,9 @@ textarea {
     color: #fff !important;
     text-decoration: none;
 }
+.cta-button:hover{
+    color: #000000!important;
+}
 
 /*---------------------*/
 .item-wrap > .item {
